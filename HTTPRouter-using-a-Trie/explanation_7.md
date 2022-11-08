@@ -1,6 +1,10 @@
 # Explanation & time and space complexity analysis
 
 ## RouteTrieNode:
+### init method
+Time complexity is constant O(1)
+Space complexity is constant O(1)
+
 ### insert method
 Time complexity of insert is the same as it's for set method for python dict.
 So in average case it's O(1), and O(n) in amortized worst case. 
@@ -9,6 +13,11 @@ Space complexity is constant O(1).
 
 
 ## RootTrie:
+
+### init method
+Time complexity is constant O(1)
+Space complexity is constant O(1)
+
 ### insert method
 Time complexity in worst case is O(m * n), where m is number of parts in path and
 n is number of nodes in trie. We iterate through all parts in path and use "in"
@@ -31,6 +40,11 @@ is constant.
 
 
 ## Router:
+
+### init method
+Time complexity is constant O(1)
+Space complexity is constant O(1)
+
 ### add_handler method
 Here split_paths and insert from RootTrie is used. So it could be also summarized to 
 O(m * n), where m is number of parts in path and n is number of nodes in trie
