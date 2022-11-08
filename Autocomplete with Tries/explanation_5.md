@@ -2,6 +2,11 @@
 
 
 ## TrieNode:
+
+### init method
+Time complexity is constant O(1)
+Space complexity is constant O(1)
+
 ### insert method
 Time complexity of insert is the same as it's for set method for python dict.
 So in average case it's O(1), and O(n) in amortized worst case. 
@@ -16,6 +21,11 @@ Space complexity in worst case is O(n), where n is number of children and childr
 of given node. In the worst case all items we check turns out to be a suffix.
 
 ## Trie:
+
+### init method
+Time complexity is constant O(1)
+Space complexity is constant O(1)
+
 ### insert method
 Time complexity in worst case is O(m * n), where m is number of chars in word and
 n is number of nodes in trie. We iterate through all chars in word and use "in"
