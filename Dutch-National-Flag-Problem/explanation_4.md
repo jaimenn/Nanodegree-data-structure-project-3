@@ -16,4 +16,4 @@ The logic completes in a single traversal, which is of O(n)
 ## Space complexity
 In place comparison and swapping was done in this algorithm. No additional space was required.
 
-As a result, the space complexity if of O(n).
+As a result, the space complexity if of O(1).
