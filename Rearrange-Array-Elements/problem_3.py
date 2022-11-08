@@ -1,81 +1,78 @@
-"""
-Solution of;
-Project: Problems vs Algorithms
-Problem 3: Rearrange Array Digits
-"""
+def heapsort(arr):
+    arr_len = len(arr)
+
+    for i in range(arr_len - 1, -1, -1):
+        heapify(arr, len(arr), i)
+
+        # Swap the top element in heap with last element in array
+        arr[0], arr[i] = arr[i], arr[0]
 
 
-# mergesort function
-def mergesort(items):
-
-    if len(items) <= 1:
-        return items
-
-    mid = len(items) // 2
-    left = items[:mid]
-    right = items[mid:]
-
-    left = mergesort(left)
-    right = mergesort(right)
-
-    return merge(left, right)
-
-
-def merge(left, right):
-
-    merged = []
-    left_index = 0
-    right_index = 0
-
-    while left_index < len(left) and right_index < len(right):
-        if left[left_index] > right[right_index]:
-            merged.append(right[right_index])
-            right_index += 1
-        else:
-            merged.append(left[left_index])
-            left_index += 1
-
-    merged += left[left_index:]
-    merged += right[right_index:]
-
-    return merged
+def heapify(arr, n, i):
+    """
+    :param: arr - array to heapify
+    n -- number of elements in the array
+    i -- index of the current node
+    TODO: Converts an array (in place) into a maxheap, a complete binary tree with the largest values at the top
+    """
+    for i in range(1, i + 1):
+        # Perform heapify processing
+        data_index = i
+        while data_index > 0:
+            parent_index = (data_index - 1) // 2
+            if arr[data_index] > arr[parent_index]:
+                arr[data_index], arr[parent_index] = arr[parent_index], arr[data_index]
+                data_index = parent_index
+            else:
+                break
 
 
 def rearrange_digits(input_list):
     """
     Rearrange Array Elements so as to form two number such that their sum is maximum.
-
     Args:
        input_list(list): Input List
     Returns:
        (int),(int): Two maximum sums
     """
-    input_list = mergesort(input_list)
 
-    i = len(input_list) - 1
+    # Handle empty input list
+    if len(input_list) == 0:
+        return []
 
-    out_1 = ""
-    out_2 = ""
+    # Step 1 - perform heap sort on the input list
+    heapsort(input_list)
 
-    while i >= 0:
+    # Step 2 - base on the sorted list, construct the 2 numbers so their sum is maximum
+    number_1_list = list()
+    number_2_list = list()
 
+    input_list_len = len(input_list)
+    # If the no. of digits is odd, then set the first digit of the first number as
+    if input_list_len % 2 == 1:
+        digit = input_list.pop()
+        number_1_list.append(digit)
+
+    # Append the digits in input list to the 2 numbers in an interleave manner
+    input_list_len = len(input_list)
+    for i in range(input_list_len, 0, -1):
+        digit = input_list.pop()
         if i % 2 == 0:
-            out_1 += str(input_list[i])
-
+            number_1_list.append(digit)
         else:
-            out_2 += str(input_list[i])
+            number_2_list.append(digit)
 
-        i -= 1
+    # Convert the 2 list of digits into a string
+    number_1_str = ''.join(str(n) for n in number_1_list)
+    number_2_str = ''.join(str(n) for n in number_2_list)
 
-    if out_1 > out_2:
+    # Convert the number string to int
+    number_1 = int(number_1_str)
+    number_2 = int(number_2_str)
 
-        return list(map(int, [out_1, out_2]))
-
-    return list(map(int, [out_2, out_1]))
+    return [number_1, number_2]
 
 
-# test_case[0] is the list that we want to test
-# test_case[1] is the result that we expect
 def test_function(test_case):
     output = rearrange_digits(test_case[0])
     solution = test_case[1]
@@ -85,10 +82,18 @@ def test_function(test_case):
         print("Fail")
 
 
-test_function([[1, 2, 3, 4, 5], [542, 31]])
+# Test case 1 - un-sorted array as input
+print("Calling function with un-sorted array: [4, 6, 2, 5, 9, 8]")
+test_case_1 = [[4, 6, 2, 5, 9, 8], [964, 852]]
+# Should print pass as the output should be [964, 852]
+test_function(test_case_1)
 
-test_function([[4, 6, 2, 5, 9, 8], [964, 852]])
+# Test case 2 - sorted array as input
+test_case_2 = [[1, 2, 3, 4, 5], [542, 31]]
+# Should print pass as the output should be [542, 31]
+test_function(test_case_2)
 
-test_function([[0, 9], [9, 0]])
-
-test_function([[0, 8, 3], [80, 3]])
+# Test case 3 - empty array as input
+test_case_3 = [[], []]
+# Should print pass as the output should be []
+test_function(test_case_3)
