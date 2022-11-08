@@ -1,12 +1,18 @@
-"""
-Explanation of;
-Project: Problems vs Algorithms
-Problem 7: Request Routing in a Web Server with a Trie
-"""
+# Problem 7
 
-#I implemented RouteTrie class, RouteTrieNode and Router classes.
+My implementation is exactly the same as problem 5 with some slight differences. I had to string clean the path by removing outside occurences of `/` with strip and then split it.
 
-#This algorithm takes n pages and stores n pages to trie
-so space complexity is O(n)
+## Add Handler Method
+Time Complexity: O(n)
+Each part of the path needs to be iterated through
 
-#while searching for path, algorithm checks n pages so runtime complexity is O(n)
+
+Space Complexity: O(n)
+A new TrieNode is created for each part of the path
+
+## Lookup Method
+Time Complexity: O(n)
+
+Space Complexity: O(1)
+
+No additional memory is allocated
