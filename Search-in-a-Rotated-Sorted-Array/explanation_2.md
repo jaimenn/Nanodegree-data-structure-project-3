@@ -17,4 +17,4 @@ The run time complexity is the same as a Binary Search, which is of O(log(n))
 ## Space complexity
 Binary Search takes constant space, as the space taken by the algorithm is the same for any number of elements in the array.
 
-As a result, the space complexity if of O(1)
+As a result, the space complexity if of O(log(n))
